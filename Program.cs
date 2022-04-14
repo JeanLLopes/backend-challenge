@@ -7,7 +7,6 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             Console.WriteLine(BreakText("In 1991, while studying computer science at University of Helsinki, Linus Torvalds began a project that later became the Linux kernel. He wrote the program specifically for the hardware he was using and independent of an operating system because he wanted to use the functions of his new PC with an 80386 processor. Development was done on MINIX using the GNU C Compiler.", 40));
         }
 
@@ -19,18 +18,28 @@ namespace ConsoleApp2
             var counter = 0;
             for (int index = 0; index < arrayText.Length; index++)
             {
-                counter += arrayText[index].Length + 1;
+                string itemText = arrayText[index];
+                counter += itemText.Length;
 
-                if (counter >= count)
+                if (counter >= (count -1))
                 {
-                    sentence.Append($"{arrayText[index]} \n");
-                    counter = 0;
+                    if (counter <= count)
+                    {
+                        sentence.Append($"{itemText}\n");
+                        counter = 0;
+                    }
+                    else
+                    {
+                        sentence.Append($"\n{itemText} ");
+                        counter = itemText.Length +1;
+                    }
                 }
-                else 
-                { 
-                    sentence.Append($"{arrayText[index]} "); 
+                else
+                {
+                    sentence.Append($"{itemText} ");
+                    counter += 1;
                 }
-                
+
             }
             return sentence.ToString();
         }
